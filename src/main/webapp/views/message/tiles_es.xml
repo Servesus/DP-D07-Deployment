@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles_es.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+      
+<tiles-definitions>
+
+	<definition name="message/customer,handyWorker,referee,administrator/list" extends="master.page">	
+		<put-attribute name="title" value="Directorio de mensajes" />
+		<put-attribute name="body" value="/views/message/list.jsp" />
+	</definition>
+	
+	<definition name="message/customer,handyWorker,referee,administrator/create" extends="master.page">	
+		<put-attribute name="title" value="Crear nuevo mensaje" />
+		<put-attribute name="body" value="/views/message/create.jsp" />
+	</definition>
+	
+	<definition name="message/administrator/createbroadcast" extends="master.page">	
+		<put-attribute name="title" value="Mensaje de difusión" />
+		<put-attribute name="body" value="/views/message/createbroadcast.jsp" />
+	</definition>
+	
+	<definition name="message/customer,handyWorker,referee,administrator/show" extends="master.page">	
+		<put-attribute name="title" value="Mensaje" />
+		<put-attribute name="body" value="/views/message/show.jsp" />
+	</definition>
+</tiles-definitions>

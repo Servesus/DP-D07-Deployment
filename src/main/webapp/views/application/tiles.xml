@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+
+ * Copyright (C) 2017 Universidad de Sevilla
+ * Author (A) 2012 Rafael Corchuelo (corchu@us.es)
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	
+	<definition name="application/customer/list" extends="master.page">
+		<put-attribute name="title" value="List of Applications" />
+		<put-attribute name="body" value="/views/application/list.jsp" />
+	</definition>
+	
+	<definition name="application/handyWorker/list" extends="master.page">
+		<put-attribute name="title" value="List of Applications" />
+		<put-attribute name="body" value="/views/application/list.jsp" />
+	</definition>
+	
+	<definition name="application/handyWorker/show" extends="master.page">
+		<put-attribute name="title" value="Show Application" />
+		<put-attribute name="body" value="/views/application/show.jsp" />
+	</definition>
+	
+	<definition name="application/handyWorker/edit" extends="master.page">
+		<put-attribute name="title" value="Application" />
+		<put-attribute name="body" value="/views/application/edit.jsp" />
+	</definition>
+	
+	<definition name="application/customer/show" extends="master.page">
+		<put-attribute name="title" value="Show Application" />
+		<put-attribute name="body" value="/views/application/show.jsp" />
+	</definition>
+	
+	<definition name="application/customer/accept" extends="master.page"> 
+		<put-attribute name="title" value="Accept" />
+		<put-attribute name="body" value="/views/application/accept.jsp" />
+	</definition>
+	
+	<definition name="application/customer/reject" extends="master.page"> 
+		<put-attribute name="title" value="Reject" />
+		<put-attribute name="body" value="/views/application/reject.jsp" />
+	</definition>
+
+</tiles-definitions>

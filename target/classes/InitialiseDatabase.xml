@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- Other domain beans come here -->	
+	
+	<bean id="admin1" class = "domain.Administrator">
+		<property name="name" value="admin1"/>
+		<property name="middleName" value="admin1"/>
+		<property name="surname" value="admin1"/>
+		<property name="photo" value="http://www.tumblr.com/photo"/>
+		<property name="email" value="admin1@gmail.com"/>
+		<property name="phoneNumber" value="684143460"/>
+		<property name="address" value = "Torreperojil 4"/>
+		<property name="isSuspicious" value= "false"/>
+		<property name="isBanned" value = "false"/>
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="profiles">
+			<list>
+			<ref bean="profile3"/>
+			</list>
+		</property>	
+		<property name="boxes">
+			<list>
+				<ref bean="inBox"/>
+				<ref bean="outBox"/>
+				<ref bean="spamBox"/>
+				<ref bean="trashBox"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="profile3" class="domain.Profile">
+		<property name="nick" value="Sergii"/>
+		<property name="socialNetName" value="sergii1998"/>
+		<property name="socialNetProfLink" value="https://www.twitch.tv/"/>
+		<property name="name" value="Sergio Perez"/>
+	</bean>
+	<bean id="inBox" class="domain.Box">
+		<property name="name" value="INBOX"/>
+		<property name="isSystem" value="true"/>
+		<property name="messages">
+			<list>
+			<null></null>
+			</list>
+		</property>
+	</bean>
+	<bean id="outBox" class="domain.Box">
+		<property name="name" value="OUTBOX"/>
+		<property name="isSystem" value="true"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="spamBox" class="domain.Box">
+		<property name="name" value="SPAMBOX"/>
+		<property name="isSystem" value="true"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="trashBox" class="domain.Box">
+		<property name="name" value="TRASHBOX"/>
+		<property name="isSystem" value="true"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="configuration1" class="domain.Configuration">
+		<property name="maxResults" value="10"/>
+		<property name="maxTime" value="1"/>
+		<property name="pageName" value="Acme-Handy-Worker"/>
+		<property name="bannerURL" value="https://tinyurl.com/acme-handy-worker-logo"/>
+		<property name="welcomeES" value="¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio"/>
+		<property name="welcomeEN" value="Welcome to Acme Handy Worker! Price, quality, and trust in a single place"/>
+		<property name="VATPercent" value="21"/>
+		<property name="phoneCCode" value="34"/>
+		<property name="spamWords">
+			<list>
+				<value>sex</value>
+				<value>viagra</value>
+				<value>cialis</value>
+				<value>one million</value>
+				<value>you've been selected</value>
+				<value>Nigeria</value>
+				<value>sexo</value>
+				<value>un millon</value>
+				<value>has sido seleccionado</value>
+			</list>
+		</property>
+		<property name="cCardsMakes">
+			<list>
+				<value>AMEX</value>
+				<value>VISA</value>
+				<value>MASTER</value>
+				<value>DINNERS</value>
+			</list>
+		</property>
+		
+		
+	</bean>
+	
+	<bean id="category" class = "domain.Category">
+		<property name="nameEN" value="CATEGORY"/>
+		<property name="nameES" value="CATEGORÍA"/>
+		<property name="parents"><null/></property>
+		<property name="childs">
+			<list>
+				<ref bean = "Repairments"/>
+				<ref bean = "Installations"/>
+				<ref bean = "Carpentry"/>
+				<ref bean = "Cleaning"/>
+				<ref bean = "ConcreteWork"/>
+				<ref bean = "Doors"/>
+				<ref bean = "Moving"/>
+				<ref bean = "Painting"/>
+				<ref bean = "PestControl"/>
+				<ref bean = "Roofing"/>
+				<ref bean = "Cleaning"/>
+				<ref bean = "Electronic"/>
+			</list>
+		</property>	
+	</bean>
+	
+	<bean id="Carpentry" class = "domain.Category">
+		<property name="nameEN" value="Carpentry"/>
+		<property name="nameES" value="Carpintería"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="CeilingRepair" class = "domain.Category">
+		<property name="nameEN" value="Ceiling Repair"/>
+		<property name="nameES" value="Reparación de techo"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Cleaning" class = "domain.Category">
+		<property name="nameEN" value="Cleaning"/>
+		<property name="nameES" value="Limpieza"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="ConcreteWork" class = "domain.Category">
+		<property name="nameEN" value="Concrete Work"/>
+		<property name="nameES" value="Trabajo Concreto"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Doors" class = "domain.Category">
+		<property name="nameEN" value="Doors"/>
+		<property name="nameES" value="Puertas"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="ElectricalWiring" class = "domain.Category">
+		<property name="nameEN" value="Electrical Wiring"/>
+		<property name="nameES" value="Cableado Eléctrico"/>
+		<property name="parents" ref="Electronic"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="FanInstallation" class = "domain.Category">
+		<property name="nameEN" value="Fan Installation"/>
+		<property name="nameES" value="Instalación de ventilación"/>
+		<property name="parents" ref="Installations"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="FenceFixing" class = "domain.Category">
+		<property name="nameEN" value="Fence Fixing"/>
+		<property name="nameES" value="Reparación de vallado"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="HomeSecuritySystems" class = "domain.Category">
+		<property name="nameEN" value="Home Security Systems"/>
+		<property name="nameES" value="Sistemas de seguridad para el hogar"/>
+		<property name="parents" ref="Electronic"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="InsulationInstallation" class = "domain.Category">
+		<property name="nameEN" value="Insulation Installation"/>
+		<property name="nameES" value="Instalación de aislamiento"/>
+		<property name="parents" ref="Installations"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="LampRepair" class = "domain.Category">
+		<property name="nameEN" value="Lamp Repair"/>
+		<property name="nameES" value="Reparación de lámparas"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Moving" class = "domain.Category">
+		<property name="nameEN" value="Moving"/>
+		<property name="nameES" value="Mudanza"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Painting" class = "domain.Category">
+		<property name="nameEN" value="Painting"/>
+		<property name="nameES" value="Pintura"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="PestControl" class = "domain.Category">
+		<property name="nameEN" value="Pest Control"/>
+		<property name="nameES" value="Control de Plagas"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="PlumbingRepair" class = "domain.Category">
+		<property name="nameEN" value="Plumbing Repair"/>
+		<property name="nameES" value="Reparación de fontanería"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Roofing" class = "domain.Category">
+		<property name="nameEN" value="Roofing"/>
+		<property name="nameES" value="Techado"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="ShelfInstallation" class = "domain.Category">
+		<property name="nameEN" value="ShelfInstallation"/>
+		<property name="nameES" value="Instalación de estantería"/>
+		<property name="parents" ref="Installations"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="SolarPanels" class = "domain.Category">
+		<property name="nameEN" value="Solar Panels"/>
+		<property name="nameES" value="Paneles Solares"/>
+		<property name="parents" ref="Electronic"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Soundproofing" class = "domain.Category">
+		<property name="nameEN" value="Sondproofing"/>
+		<property name="nameES" value="Insonorización"/>
+		<property name="parents" ref="Installations"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="SprinklerRepair" class = "domain.Category">
+		<property name="nameEN" value="Sprinkler Repair"/>
+		<property name="nameES" value="Reparación de Aspersores"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="WindowRepair" class = "domain.Category">
+		<property name="nameEN" value="Window Repair"/>
+		<property name="nameES" value="Reparación de ventanas"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Repairments" class = "domain.Category">
+		<property name="nameEN" value="Repairments"/>
+		<property name="nameES" value="Reparaciones"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			<ref bean = "CeilingRepair"/>
+			<ref bean = "FenceFixing"/>
+			<ref bean = "LampRepair"/>
+			<ref bean = "PlumbingRepair"/>
+			<ref bean = "SprinklerRepair"/>
+			<ref bean = "WindowRepair"/>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Installations" class = "domain.Category">
+		<property name="nameEN" value="Installations"/>
+		<property name="nameES" value="Instalaciones"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			<ref bean = "FanInstallation"/>
+			<ref bean = "InsulationInstallation"/>
+			<ref bean = "ShelfInstallation"/>
+			<ref bean = "Soundproofing"/>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Electronic" class = "domain.Category">
+		<property name="nameEN" value="Electronic"/>
+		<property name="nameES" value="Electrónica"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			<ref bean = "ElectricalWiring"/>
+			<ref bean = "HomeSecuritySystems"/>
+			<ref bean = "SolarPanels"/>
+			</list>
+		</property>	
+	</bean>
+</beans>
